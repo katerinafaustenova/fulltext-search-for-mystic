@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { mockResults } from "./mockResults";
 import "./Search.css";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       .then((res) => res.json())
       .then((res) => {
         setLoading(false);
-        setResults(res);
+        setResults(mockResults.results);
       })
       .catch((err) => {
         setLoading(false);
@@ -36,13 +37,28 @@ function App() {
     }
   }, [query]);
 
+  console.log("results", results);
+
   return (
     <div className="search">
       <input type="text" onChange={(e) => setQuery(e.target.value)} />
       {loading && <div className="loading">Hledám...</div>}
       {error && <div className="error">Nenalezen žádný výsledek.</div>}
       {results && !loading && !error && (
-        <div className="results">{results?.value}</div>
+        <div className="results">
+          {results?.map(({ title, price, image, category, link }, index) => {
+            return (
+              <>
+                <a href={link} key={index}>
+                  <div>{title}</div>
+                  <div>{price}</div>
+                  <div>{category}</div>
+                </a>
+                <hr />
+              </>
+            );
+          })}
+        </div>
       )}
     </div>
   );
