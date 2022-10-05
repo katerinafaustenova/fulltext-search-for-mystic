@@ -1,3 +1,9 @@
-.results {
+.loading {
   background-color: yellow;
+}
+.results {
+  background-color: greenyellow;
+}
+.error {
+  background-color: red;
 }
