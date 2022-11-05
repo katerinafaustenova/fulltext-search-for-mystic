@@ -42,23 +42,24 @@ function App() {
   return (
     <>
       <input type="text" onChange={(e) => setQuery(e.target.value)} />
-      {loading && <div className="loading">Hledám...</div>}
       {error && <div className="error">Nenalezen žádný výsledek.</div>}
-      {results && !loading && !error && (
+      {!error && (results || loading) && (
         <div className="results">
-          {results?.map(({ title, price, image, category, link }, index) => {
-            return (
-              <>
-                <a href={link} key={index} className="item">
-                  <img src={image} alt={image} className="item-image" />
-                  <h5 className="item-title">{title}</h5>
-                  <span className="item-category">{category}</span>
-                  <span className="item-price">{price}</span>
-                </a>
-                <hr />
-              </>
-            );
-          })}
+          {loading && <span className="loading">Vyhledávám...</span>}
+          {!loading &&
+            results?.map(({ title, price, image, category, link }, index) => {
+              return (
+                <>
+                  <a href={link} key={index} className="item">
+                    <img src={image} alt={image} className="item-image" />
+                    <h5 className="item-title">{title}</h5>
+                    <span className="item-category">{category}</span>
+                    <span className="item-price">{price}</span>
+                  </a>
+                  <hr />
+                </>
+              );
+            })}
         </div>
       )}
     </>
