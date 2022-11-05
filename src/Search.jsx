@@ -55,8 +55,10 @@ function App() {
                     <h5 className="item-title">{title}</h5>
                     <span className="item-category">{category}</span>
                     <span className="item-price">{price}</span>
+                    <span className="item-currency">
+                      {mockResults.currency}
+                    </span>
                   </a>
-                  <hr />
                 </>
               );
             })}

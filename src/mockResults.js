@@ -25,4 +25,5 @@ export const mockResults = {
       link: "https://mstest.cloud-fr1.unispace.io/ms-staging/mysticshop.cz/www/product/detail?code=TEST1",
     },
   ],
+  currency: "Kč",
 };
