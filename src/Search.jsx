@@ -37,11 +37,19 @@ function App() {
     }
   }, [query]);
 
+  function updateValue(e) {
+    const value = e.target.value;
+    console.log("value", value);
+    // setQuery(value);
+  }
+
+  document.getElementById("test-input").addEventListener("change", updateValue);
+
   console.log("results", results);
 
   return (
     <>
-      <input type="text" onChange={(e) => setQuery(e.target.value)} />
+      {/* <input type="text" onChange={(e) => setQuery(e.target.value)} /> */}
       {error && <div className="error">Nenalezen žádný výsledek.</div>}
       {!error && (results || loading) && (
         <div className="results">
